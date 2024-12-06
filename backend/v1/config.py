@@ -13,5 +13,6 @@ class Config:
             'ssl_mode': 'REQUIRED'
         }
     }
+    JWT_SECRET_KEY = 'OAL2pry9h84[q3p40t932012]'
 
 config = Config()
