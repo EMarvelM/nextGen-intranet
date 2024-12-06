@@ -2,6 +2,7 @@ from flask import request, jsonify
 from flask_jwt_extended import create_access_token
 from ..models import db
 from ..models.user import User
+from ..views.user import generate_username
 from . import user
 
 @user.route("/", strict_slashes=False, methods=["POST"])
@@ -13,13 +14,26 @@ def register():
         
         user = User()
 
-        err = user.validate_fields(['firstname', 'lastname', 'email', 'password'], data=data)
+        err = user.validate_fields(['firstname', 'lastname', 'email', 'password', 'course'], data=data)
         if err:
             return jsonify(err), 400
-        
+
         existing_user = User.query.filter_by(email=data.get('email')).first()
         if existing_user:
             return jsonify({'error': f'Email {existing_user.email} already exists'})
+
+        if 'username' not in data:
+            while True:
+                username = generate_username(firstname=data['firstname'])
+                userUsername = User.query.filter_by(username=username).first()
+                if not userUsername:
+                    data['username'] = username
+                    break
+        else:
+            userUsername = User.query.filter_by(username=username)
+            if userUsername:
+                return jsonify({'error': f'Username {username} already exists'})
+
 
         for key, value in data.items():
             if key == 'password':

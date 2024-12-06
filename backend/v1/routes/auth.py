@@ -16,16 +16,16 @@ def login():
 
         user = User.query.filter_by(email=data.get('email')).first()
         if not user:
-            return jsonify({'error': 'Account does not exist!'})
-        
+            return jsonify({'error': 'Account does not exist!'}), 404
 
+        # generate jwt token
         token = create_access_token(user.id)
 
         return jsonify({
             'message': 'login successful',
             'token': token
         })
-        
+
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred'}), 500
