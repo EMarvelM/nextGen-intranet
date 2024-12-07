@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/bottom_toast.css">
+    <title>Login | NextGen</title>
 </head>
 <body>
     <section class="login-cont font-mono">
@@ -14,12 +15,12 @@
             <h1>Login</h1>
             <div class="input-box">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="example@gmail.com">
+                <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
             </div>
 
             <div class="input-box">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="*****************">
+                <input type="password" name="password" id="password" placeholder="*****************" required>
             </div>
 
             <input type="submit" value="Login" id="login-submit" class="input-box login-btn">
@@ -28,52 +29,13 @@
     </section>
     <div class="toast">
         <div class="inner-toast">
-            <span class="toast-content" id="toast-content">Error encountered</span>
+            <span class="toast-content" id="toast-content">Respond null</span>
             <div class="bi-background">
                 <i class="bi bi-x"></i>
             </div>
         </div>
     </div>
 
-    <script>
-        const emailField = document.getElementById('email');
-        const passwordField = document.getElementById('password');
-
-        const submitBtn = document.getElementById('login-submit');
-
-        const toastBox = document.querySelector('.toast');
-        const toastContent = document.getElementById('toast-content');
-
-
-        submitBtn.addEventListener('click', async (event) => {
-            event.preventDefault()
-            try {
-                const response = await fetch('http://127.0.0.1:5000/auth/login', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: emailField.value,
-                        password: passwordField.value
-                    }),
-                })
-
-                const body = await response.json()
-                if (!response.ok) {
-                    toastContent.innerHTML = `Error encountered, ${body.error}`
-                    toastBox.style.display = 'block';
-                    console.log("Gotten response");
-                    console.log("Error encountered", body.error);
-                } else {
-                    console.log(body)
-                }
-            } catch (error) {
-                toastContent.innerHTML = `Error encountered, ${error}`
-                toastBox.style.display = 'block';
-                console.log("error", error);
-            }
-        })
-    </script>
+    <script src="js/login.js"></script>
 </body>
 </html>

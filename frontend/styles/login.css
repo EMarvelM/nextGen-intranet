@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
     height: 100vh;
     width: 100vw;
     overflow-y: scroll;
@@ -27,8 +28,8 @@
 }
 
 .inner-login-box h1 {
-    font-size: 40px;
-    font-weight: bolder;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .input-box {
@@ -58,45 +59,4 @@
 
 .login-btn:hover {
     background-color: rgba(128, 128, 128, .7);
-}
-
-
-.toast {
-    display: none;
-
-    background-color: gray;
-    padding: 10px 10px 10px 40px;
-    border-radius: 15px;
-
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    bottom: -100px;
-}
-
-.inner-toast span {
-    margin-right: 30px;
-}
-.toast .bi-background {
-    background-color: white;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inner-toast{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.toast-content {
-    color: red;
-    text-shadow: 0px 0px 4px white;
 }

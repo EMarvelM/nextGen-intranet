@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | NextGen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" href="styles/bottom_toast.css">
+</head>
+<body>
+    <section class="reg-cont font-mono">
+        <form class="inner-reg-box">
+            <h1>Registration</h1>
+            <!-- first section of registration -->
+            <section class="reg-sec">
+                <div class="split-v">
+                    <div class="input-box">
+                        <label for="firstname">First Name</label>
+                        <input type="text" name="firstname" id="firstname">
+                    </div>
+                    <div class="input-box">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" name="lastname" id="lastname">
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
+                </div>
+    
+                <div class="input-box">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="*****************" required>
+                </div>
+            </section>
+
+            <nav class="progess">
+                <span class="progess-bar"></span>
+                <span></span>
+                <span></span>
+            </nav>
+            <input type="submit" value="Previous" id="prev-submit" class="input-box reg-btn">
+            <input type="submit" value="Continue" id="next-submit" class="input-box reg-btn">
+            <input type="submit" value="Submit" id="final-submit" class="input-box reg-btn">
+        </form>
+    </section>
+
+
+    <!-- bottom pop-up -->
+    <div class="toast">
+        <div class="inner-toast">
+            <span class="toast-content" id="toast-content">Respond null</span>
+            <div class="bi-background">
+                <i class="bi bi-x"></i>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
