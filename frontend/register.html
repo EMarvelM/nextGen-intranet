@@ -12,38 +12,127 @@
 <body>
     <section class="reg-cont font-mono">
         <form class="inner-reg-box">
-            <h1>Registration</h1>
+            <h1 class="top-tag">Registration</h1>
+
             <!-- first section of registration -->
             <section class="reg-sec">
                 <div class="split-v">
+                    <!-- firtname -->
                     <div class="input-box">
-                        <label for="firstname">First Name</label>
-                        <input type="text" name="firstname" id="firstname">
+                        <label for="firstname">First Name<span class="required">*</span>
+                        </label>
+                        <input type="text" name="firstname" id="firstname" placeholder="Marvel" required>
                     </div>
+
+                    <!-- lastname -->
                     <div class="input-box">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" name="lastname" id="lastname">
+                        <label for="lastname">Last Name<span class="required">*</span>
+                        </label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Egbe" required>
                     </div>
                 </div>
+                
+                <!-- username -->
                 <div class="input-box">
-                    <label for="email">Email</label>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="@uniqueUsername">
+                </div>
+
+                <!-- email -->
+                <div class="input-box">
+                    <label for="email">Email<span class="required">*</span>
+                    </label>
                     <input type="email" name="email" id="email" placeholder="example@gmail.com" required>
                 </div>
-    
+
+                <!-- phone number -->
                 <div class="input-box">
-                    <label for="password">Password</label>
+                    <label for="phone">Phone</label>
+                    <input type="phone" name="phone" id="phone" placeholder="(+234) 808 3340 791" required>
+                </div>
+
+                <!-- password -->
+                <div class="input-box">
+                    <label for="password">Password<span class="required">*</span>
+                    </label>
                     <input type="password" name="password" id="password" placeholder="*****************" required>
                 </div>
             </section>
 
+            <!-- second section of registration -->
+            <section class="reg-sec hide-now">
+                <div class="input-box">
+                    <label for="course">Program Enrolled<span class="required">*</span>
+                    </label>
+                    <select name="course" id="course" required>
+                        <option value="" disabled selected>SELECT YOUR ENROLED COURSE</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Data Analyst / Science">Data Analyst / Science</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                        <option value="Office Production">Office Production</option>
+                    </select>
+                </div>
+                
+                <div class="split-v">
+                    <!-- firtname -->
+                    <div class="input-box">
+                        <label for="startdate">Start Date</label>
+                        <input type="date" name="startdate" id="startdate" title="Registration Date Or First date in class">
+                    </div>
+
+                    <!-- lastname -->
+                    <div class="input-box" >
+                        <label for="batch">Batch/Group<span class="required">*</span>
+                        </label>
+                        <select name="batch" id="batch" title="Select your group" required>
+                            <option value="" disabled selected>SELECT GROUP</option>
+                            <option value="Group 1">Group 1</option>
+                            <option value="Group 2">Group 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="split-v">
+                    <!-- firtname -->
+                    <div class="input-box" >
+                        <label for="access">Access Level<span class="required">*</span>
+                        </label>
+                        <select name="access" id="access" title="If you're a student do not change option from Trainee" required>
+                            <option value="" disabled>SELECT LEVEL</option>
+                            <option value="Trainee" selected>Trainee</option>
+                            <option value="Admin">Mentor</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <!-- gender or replace with access code for admin -->
+                    <div class="input-box" >
+                        <label for="gender">Gender<span class="required">*</span>
+                        </label>
+                        <select name="gender" id="gender" title="Select your group" required>
+                            <option value="" disabled selected>SELECT GENDER</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-box">
+                    <label for="nin">National Identification Number</label>
+                    <input type="number" name="nin" id="nin" min="1" placeholder="11 digit nin" title="National Identification Number">
+                </div>
+            </section>
+
             <nav class="progess">
-                <span class="progess-bar"></span>
-                <span></span>
-                <span></span>
+                <span class="progess-bar progress-at"></span>
+                <span class="progess-bar progress-cannot"></span>
             </nav>
-            <input type="submit" value="Previous" id="prev-submit" class="input-box reg-btn">
-            <input type="submit" value="Continue" id="next-submit" class="input-box reg-btn">
-            <input type="submit" value="Submit" id="final-submit" class="input-box reg-btn">
+            <div class="full-width-input-box">
+                <input type="submit" value="Previous" id="prev-submit" class="input-box reg-btn">
+                <input type="submit" value="Continue" id="next-submit" class="input-box reg-btn">
+                <input type="submit" value="Submit" id="submit" class="input-box reg-btn hide-now">
+            </div>
         </form>
     </section>
 
@@ -57,5 +146,146 @@
             </div>
         </div>
     </div>
+
+
+    <script src="js/register.js"></script>
+    <script>
+        const prevBtn = document.getElementById('prev-submit');
+        const nextBtn = document.getElementById('next-submit');
+        const submitBtn = document.getElementById('submit');
+
+        const allSec = document.querySelectorAll('.reg-sec');
+
+        const progressBar = document.querySelector('.progess');
+        let progressBtn = document.querySelectorAll('.progess-bar');
+
+
+
+        function nextPage(e) {
+            e.preventDefault();
+
+            // TODO:// IMPLEMENT FETCH REQUEST WITH POST DATA
+
+            for (let index = 0; index < allSec.length; index++) {
+                const element = allSec[index];
+
+                if (!element.classList.contains("hide-now")) {
+                    element.classList.add("hide-now");
+
+                    if (index + 1 < allSec.length) {
+                        allSec[index + 1].classList.remove("hide-now");
+                    }
+
+                    checkNow(allSec);
+                    break;
+                }
+            }
+        }
+
+        function prevPage(e) {
+            e.preventDefault();
+
+            for (let index = 0; index < allSec.length; index++) {
+                const element = allSec[index];
+
+                if (!element.classList.contains("hide-now") && index - 1 >= 0) {
+                    element.classList.add("hide-now");
+
+                    if (index - 1 >= 0 && index - 1 < allSec.length) {
+                        allSec[index - 1].classList.remove("hide-now");
+                    }
+
+                    checkNow(allSec);
+                    break;
+                }
+            }
+        }
+
+        function checkNow(all) {
+            progressBar.innerHTML = ``
+
+            all.forEach((element, index, array) => {
+                if (!element.classList.contains("hide-now")) {
+                    if (index + 1 == array.length) {
+                        submitBtn.classList.remove('hide-now');
+                        nextBtn.classList.add('hide-now');
+                        prevBtn.classList.remove('hide-now');
+                    } else {
+                        submitBtn.classList.add('hide-now');
+                        nextBtn.classList.remove('hide-now');
+                        if (index === 0) {
+                            if (!prevBtn.classList.contains('hide-now')) {
+                                prevBtn.classList.add('hide-now');
+                            }
+                        } else {
+                            prevBtn.classList.remove('hide-now');
+                        }
+                    }
+
+                    progressBar.innerHTML += `<span class="progess-bar progress-at"></span>`
+                } else {
+                    progressBar.innerHTML += `<span class="progess-bar progress-cannot"></span>`
+                }
+            })
+            
+            progressBtn = document.querySelectorAll('.progess-bar');
+            if (progressBtn.length > 0) {
+                const lastButton = progressBtn[progressBtn.length - 1];
+                lastButton.title = "Submit section"; // Set the title attribute
+            } else {
+                console.error("No progress buttons found!");
+            }
+
+            
+            console.log("adding event")
+            
+            // handling progress
+            progressBtn.forEach((btn, idx) => {
+                btn.addEventListener('click', () => {
+                    
+
+                    all.forEach((element) => {
+                        if (!element.classList.contains('hide-now')) {
+                            element.classList.add('hide-now');
+                        }
+                        if (idx + 1 === all.length) {
+                            if (submitBtn.classList.contains('hide-now')) {
+                                submitBtn.classList.remove('hide-now');
+                            }
+                            if (!nextBtn.classList.contains('hide-now')) {
+                                nextBtn.classList.add('hide-now');
+                            } 
+                            if (prevBtn.classList.contains('hide-now')) {
+                                prevBtn.classList.remove('hide-now');
+                            }
+                        } else {
+                            if (!submitBtn.classList.contains('hide-now')) {
+                                submitBtn.classList.add('hide-now');
+                            }
+                            if (nextBtn.classList.contains('hide-now')) {
+                                nextBtn.classList.remove('hide-now');
+                            } 
+                            if (!prevBtn.classList.contains('hide-now') && idx === 0) {
+                                prevBtn.classList.add('hide-now');
+                            }
+                        }
+                    });
+                    progressBtn.forEach((b) => {
+                        b.classList.remove("progress-at")
+                        b.classList.add("progress-cannot")
+                    })
+                    btn.classList.remove('progress-cannot')
+                    btn.classList.add('progress-at')
+                    all[idx].classList.remove('hide-now');
+                });
+            });
+        }
+
+        nextBtn.addEventListener('click', nextPage);
+        prevBtn.addEventListener('click', prevPage);
+        // TODO:// ONCLICK OF SUBMIT IMPLEMENT FETCH REQUEST WITH PATCH/PUT DATA
+
+        checkNow(allSec);
+    </script>
 </body>
 </html>

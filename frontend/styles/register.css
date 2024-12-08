@@ -1,3 +1,5 @@
+@import url(global.css);
+
 * {
     margin: 0; 
     padding: 0;
@@ -13,6 +15,7 @@
     height: 100vh;
     width: 100vw;
     overflow-y: scroll;
+    background-color: var(--dark-gray);
 }
 
 .reg-sec{
@@ -25,20 +28,22 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    min-height: 500px;
+    min-height: 600px;
     width: 35%;
     min-width: 500px;
     border-radius: 15px;
-    box-shadow: 0px 0px 7px rgb(0, 0, 0);
+    box-shadow: var(--bigger-box-shadow);
+    background-color: var(--white-color);
 }
 
 .reg-sec {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 
-    flex: 1.5;
+    flex: 0.25;
 }
 .split-v {
     display: flex;
@@ -51,7 +56,7 @@
     font-size: 30px;
     font-weight: bold;
 
-    flex: 1;
+    /* flex: 1; */
 }
 
 .input-box {
@@ -59,14 +64,22 @@
     flex-direction: column;
     width: 70%;
 }
+.input-box:focus {
+    outline: none;
+}
 
-.input-box input {
+.input-box input, .input-box select {
     outline: none;
     padding: 7px 15px;
     border: 1px solid black;
     text-align: center;
 }
-.input-box input:focus {
+.input-box select {
+    padding-block: 9.1px;
+    cursor: context-menu;
+}
+
+.input-box input:focus, .input-box select:focus {
     background-color: rgba(0, 0, 0, 0.08);
     text-align: left;
     border: 1px solid rgba(0, 0, 0, .1);
@@ -77,10 +90,64 @@
     background-color: gray;
     padding-block: 9px;
     cursor: pointer;
+    width: 100%;
 
-    flex: 1;
+    /* flex: 1; */
 }
 
 .reg-btn:hover {
     background-color: rgba(128, 128, 128, .7);
+}
+
+
+.full-width-input-box {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    width: 70%;
+}
+
+.required {
+    color: var(--required-color);
+    font-style: italic;
+
+}
+
+.progess {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.progress-at {
+    background-color: chocolate !important;
+}
+.progress-cannot {
+    opacity: .5;
+}
+.progess-bar {
+    height: 9px;
+    width: 40px;
+    border-radius: 20px;
+    background-color: var(--dark-gray);
+    cursor: pointer;
+}
+
+/* temp */
+.hide-now {
+    display: none;
+}
+
+
+/* Remove arrows for modern browsers */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  letter-spacing: 5px;
+}
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  letter-spacing: 13px;
 }

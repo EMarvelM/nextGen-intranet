@@ -1,3 +1,5 @@
+@import url(global.css);
+
 .move-toast {
     bottom: 20px !important;
     display: block !important;
@@ -7,13 +9,14 @@
     overflow: hidden;
 
     background-color: gray;
-    padding: 10px 10px 10px 30px;
+    padding: var(--toast-popup-padding);
     border-radius: 15px;
 
     position: fixed;
     transform: translateX(-50%);
     left: 50%;
     bottom: -20px;
+    z-index: 1000;
 
     -webkit-transition: all 7s ease-in-out;
        -moz-transition: all 7s ease-in-out;

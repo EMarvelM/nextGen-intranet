@@ -1,0 +1,8 @@
+:root {
+    --bigger-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+    --toast-popup-padding: 10px 10px 10px 30px;
+
+    --dark-gray: rgba(0, 0, 0, 0.5);
+    --white-color: rgba(255, 255, 255, 1);
+    --required-color: rgb(255, 0, 0);
+}
