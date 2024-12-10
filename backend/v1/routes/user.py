@@ -15,6 +15,7 @@ def register():
         
         user = User()
 
+        # validate all require fields
         err = user.validate_fields(['firstname', 'lastname', 'email', 'password', 'course'], data=data)
         if err:
             return jsonify(err), 400
@@ -23,6 +24,7 @@ def register():
         if existing_user:
             return jsonify({'error': f'Email {existing_user.email} already exists'}), 401
 
+        # generate a unique username for a user if not provided
         if 'username' not in data:
             while True:
                 username = generate_username(firstname=data['firstname'])
@@ -34,8 +36,8 @@ def register():
             userUsername = User.query.filter_by(username=username)
             if userUsername:
                 return jsonify({'error': f'Username {username} already exists'}), 401
-        
-        # make a user a trainee if a role isnt specified
+
+        # make a user a `trainee` if a role isnt specified
         if 'role' not in data:
             default_role  = 'trainee'
 
