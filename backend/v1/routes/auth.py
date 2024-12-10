@@ -14,9 +14,13 @@ def login():
         if err:
             return jsonify(err), 400
 
-        user = User.query.filter_by(email=data.get('email')).first()
+        email =data.get('email')
+        user = User.query.filter_by(email=email).first()
         if not user:
-            return jsonify({'error': 'Account does not exist!'}), 404
+            return jsonify({'error': f'Account {email} does not exist!'}), 404
+        
+        if not user.check_password_hash(data.get('password')):        
+            return jsonify({'error': 'Incorrect password'}), 400
 
         # generate jwt token
         token = create_access_token(user.id)
