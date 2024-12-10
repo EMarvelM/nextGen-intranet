@@ -14,6 +14,15 @@ class User(BaseModel):
     course = db.Column(db.Integer, db.ForeignKey('courses.id'))
     permission = db.Column(db.String(36))
 
+    # not neccessary
+    phone = db.Column(db.String(15))
+    start_date = db.Column(db.String(15))
+    group = db.Column(db.Integer)
+    role = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    isMaleGender = db.Column(db.Boolean)
+    nin = db.Column(db.String(15))
+
+
     @staticmethod
     def validate_fields(required_fields, data):
         for field in required_fields:

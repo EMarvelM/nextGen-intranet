@@ -5,6 +5,7 @@ from flask_cors import CORS
 from .models import db, bcrypt
 from .models.user import User
 from .models.course import Course
+from .models.roles import Role
 
 from .config import config
 # routes

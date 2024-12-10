@@ -2,6 +2,7 @@ from flask import request, jsonify
 from flask_jwt_extended import create_access_token
 from ..models.user import db, User
 from ..models.course import Course
+from ..models.roles import Role
 from ..views.user import generate_username
 from . import user
 
@@ -33,6 +34,16 @@ def register():
             userUsername = User.query.filter_by(username=username)
             if userUsername:
                 return jsonify({'error': f'Username {username} already exists'}), 401
+        
+        # make a user a trainee if a role isnt specified
+        if 'role' not in data:
+            default_role  = 'trainee'
+
+            if not Role.query.filter_by(name=default_role).first():
+                role = Role(name=default_role)
+                db.session.add(role)
+                db.session.commit()
+            data['role'] = default_role
 
 
         for key, value in data.items():
@@ -49,6 +60,13 @@ def register():
                 if not course:
                     return jsonify({'error': f'Course {value} does not exits - Report to an admin.'})
                 value = course.id
+            elif key == 'gender':
+                value = 'fe' not in value.lower()
+            elif key == 'role':
+                role = Role.query.filter_by(name=value).first()
+                if not role:
+                    return jsonify({'error': f'Role {value} does not exits - Report to an admin.'})
+                value = role.id
 
             if hasattr(user, key):
                 setattr(user, key, value)
