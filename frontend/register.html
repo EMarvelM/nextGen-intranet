@@ -55,7 +55,11 @@
                 <div class="input-box">
                     <label for="password">Password<span class="required">*</span>
                     </label>
-                    <input type="password" name="password" id="password" placeholder="*****************" required>
+                    <div class="input-box-row">
+                        <input type="password" name="password" id="password" placeholder="*****************" required title="Password">
+                        <i class="bi bi-eye-fill open-eye"></i>
+                        <i class="bi bi-eye-slash-fill open-eye hide-now"></i>
+                    </div>
                 </div>
             </section>
 
@@ -150,5 +154,6 @@
 
     <!-- JavaScript -->
     <script src="js/register.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

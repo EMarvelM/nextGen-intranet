@@ -6,3 +6,27 @@
     --white-color: rgba(255, 255, 255, 1);
     --required-color: rgb(255, 0, 0);
 }
+
+/* very - important */
+.hide-now {
+    display: none;
+}
+
+.input-box-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.input-box-row input {
+    flex: 1;
+    width: 100%;
+}
+
+.open-eye {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
