@@ -48,6 +48,7 @@
     padding: 7px 15px;
     border: 1px solid black;
     text-align: center;
+    width: 100%;
 }
 .input-box input:focus {
     background-color: rgba(0, 0, 0, 0.08);

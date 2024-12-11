@@ -73,6 +73,7 @@
     padding: 7px 15px;
     border: 1px solid black;
     text-align: center;
+    width: 100%;
 }
 .input-box select {
     padding-block: 9.1px;
@@ -131,11 +132,6 @@
     border-radius: 20px;
     background-color: var(--dark-gray);
     cursor: pointer;
-}
-
-/* temp */
-.hide-now {
-    display: none;
 }
 
 
