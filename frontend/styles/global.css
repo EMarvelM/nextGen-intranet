@@ -30,3 +30,7 @@
     cursor: pointer;
     z-index: 10;
 }
+
+#password {
+    padding-right: 30px;
+}
