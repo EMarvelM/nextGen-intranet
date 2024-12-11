@@ -1,0 +1,68 @@
+@import url(global.css);
+
+.move-toast {
+    bottom: 20px !important;
+    display: block !important;
+}
+.toast {
+    display: none;
+    overflow: hidden;
+
+    background-color: gray;
+    padding: var(--toast-popup-padding);
+    border-radius: 15px;
+
+    position: fixed;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: -20px;
+    z-index: 1000;
+
+    -webkit-transition: all 7s ease-in-out;
+       -moz-transition: all 7s ease-in-out;
+        -ms-transition: all 7s ease-in-out;
+         -o-transition: all 7s ease-in-out;
+            transition: all 7s ease-in-out;
+}
+
+.inner-toast span {
+    margin-right: 30px;
+}
+.toast .bi-background {
+    background-color: white;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-toast{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.toast-content {
+    color: red;
+    text-shadow: 0px 0px 2px white;
+}
+
+
+@media (max-width: 415px) {
+    .toast-content  {
+        font-size: 11px;
+    }
+    .inner-toast span {
+        margin-right: 10px;
+    }
+    .toast {
+        padding: 5px 5px 5px 10px;
+    }
+}

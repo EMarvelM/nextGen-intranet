@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/bottom_toast.css">
+    <title>Login | NextGen</title>
+</head>
+<body>
+    <section class="login-cont font-mono">
+        <form class="inner-login-box">
+            <h1>Login</h1>
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="example@gmail.com" required title="Email or Username">
+            </div>
+
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="*****************" required title="Password">
+            </div>
+
+            <input type="submit" value="Login" id="login-submit" class="input-box login-btn" title="Click to Login">
+        </form>
+
+    </section>
+    <div class="toast" title="Pop-up Notification">
+        <div class="inner-toast">
+            <span class="toast-content" id="toast-content">Respond null</span>
+            <div class="bi-background">
+                <i class="bi bi-x"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
