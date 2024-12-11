@@ -44,7 +44,8 @@ submitBtn.addEventListener('click', async (event) => {
             console.log("Gotten response");
             console.log("Error encountered", body.error);
         } else {
-            console.log(body)
+            localStorage.setItem('token', body?.token)
+            window.location.replace('./dashboard.html')
         }
     } catch (error) {
         toastContent.innerHTML = `${error}`

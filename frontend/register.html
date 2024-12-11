@@ -98,11 +98,11 @@
                     <div class="input-box" >
                         <label for="access">Access Level<span class="required">*</span>
                         </label>
-                        <select name="access" id="access" title="If you're a student do not change option from Trainee" required>
+                        <select name="role" id="access" title="If you're a student do not change option from Trainee" required>
                             <option value="" disabled>SELECT LEVEL</option>
-                            <option value="Trainee" selected>Trainee</option>
-                            <option value="Admin">Mentor</option>
-                            <option value="Admin">Admin</option>
+                            <option value="trainee" selected>Trainee</option>
+                            <option value="admin">Mentor</option>
+                            <option value="admin">Admin</option>
                         </select>
                     </div>
 
@@ -148,144 +148,7 @@
     </div>
 
 
+    <!-- JavaScript -->
     <script src="js/register.js"></script>
-    <script>
-        const prevBtn = document.getElementById('prev-submit');
-        const nextBtn = document.getElementById('next-submit');
-        const submitBtn = document.getElementById('submit');
-
-        const allSec = document.querySelectorAll('.reg-sec');
-
-        const progressBar = document.querySelector('.progess');
-        let progressBtn = document.querySelectorAll('.progess-bar');
-
-
-
-        function nextPage(e) {
-            e.preventDefault();
-
-            // TODO:// IMPLEMENT FETCH REQUEST WITH POST DATA
-
-            for (let index = 0; index < allSec.length; index++) {
-                const element = allSec[index];
-
-                if (!element.classList.contains("hide-now")) {
-                    element.classList.add("hide-now");
-
-                    if (index + 1 < allSec.length) {
-                        allSec[index + 1].classList.remove("hide-now");
-                    }
-
-                    checkNow(allSec);
-                    break;
-                }
-            }
-        }
-
-        function prevPage(e) {
-            e.preventDefault();
-
-            for (let index = 0; index < allSec.length; index++) {
-                const element = allSec[index];
-
-                if (!element.classList.contains("hide-now") && index - 1 >= 0) {
-                    element.classList.add("hide-now");
-
-                    if (index - 1 >= 0 && index - 1 < allSec.length) {
-                        allSec[index - 1].classList.remove("hide-now");
-                    }
-
-                    checkNow(allSec);
-                    break;
-                }
-            }
-        }
-
-        function checkNow(all) {
-            progressBar.innerHTML = ``
-
-            all.forEach((element, index, array) => {
-                if (!element.classList.contains("hide-now")) {
-                    if (index + 1 == array.length) {
-                        submitBtn.classList.remove('hide-now');
-                        nextBtn.classList.add('hide-now');
-                        prevBtn.classList.remove('hide-now');
-                    } else {
-                        submitBtn.classList.add('hide-now');
-                        nextBtn.classList.remove('hide-now');
-                        if (index === 0) {
-                            if (!prevBtn.classList.contains('hide-now')) {
-                                prevBtn.classList.add('hide-now');
-                            }
-                        } else {
-                            prevBtn.classList.remove('hide-now');
-                        }
-                    }
-
-                    progressBar.innerHTML += `<span class="progess-bar progress-at"></span>`
-                } else {
-                    progressBar.innerHTML += `<span class="progess-bar progress-cannot"></span>`
-                }
-            })
-            
-            progressBtn = document.querySelectorAll('.progess-bar');
-            if (progressBtn.length > 0) {
-                const lastButton = progressBtn[progressBtn.length - 1];
-                lastButton.title = "Submit section"; // Set the title attribute
-            } else {
-                console.error("No progress buttons found!");
-            }
-
-            
-            console.log("adding event")
-            
-            // handling progress
-            progressBtn.forEach((btn, idx) => {
-                btn.addEventListener('click', () => {
-                    
-
-                    all.forEach((element) => {
-                        if (!element.classList.contains('hide-now')) {
-                            element.classList.add('hide-now');
-                        }
-                        if (idx + 1 === all.length) {
-                            if (submitBtn.classList.contains('hide-now')) {
-                                submitBtn.classList.remove('hide-now');
-                            }
-                            if (!nextBtn.classList.contains('hide-now')) {
-                                nextBtn.classList.add('hide-now');
-                            } 
-                            if (prevBtn.classList.contains('hide-now')) {
-                                prevBtn.classList.remove('hide-now');
-                            }
-                        } else {
-                            if (!submitBtn.classList.contains('hide-now')) {
-                                submitBtn.classList.add('hide-now');
-                            }
-                            if (nextBtn.classList.contains('hide-now')) {
-                                nextBtn.classList.remove('hide-now');
-                            } 
-                            if (!prevBtn.classList.contains('hide-now') && idx === 0) {
-                                prevBtn.classList.add('hide-now');
-                            }
-                        }
-                    });
-                    progressBtn.forEach((b) => {
-                        b.classList.remove("progress-at")
-                        b.classList.add("progress-cannot")
-                    })
-                    btn.classList.remove('progress-cannot')
-                    btn.classList.add('progress-at')
-                    all[idx].classList.remove('hide-now');
-                });
-            });
-        }
-
-        nextBtn.addEventListener('click', nextPage);
-        prevBtn.addEventListener('click', prevPage);
-        // TODO:// ONCLICK OF SUBMIT IMPLEMENT FETCH REQUEST WITH PATCH/PUT DATA
-
-        checkNow(allSec);
-    </script>
 </body>
 </html>
