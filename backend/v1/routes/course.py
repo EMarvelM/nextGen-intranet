@@ -1,5 +1,6 @@
 from flask import request, jsonify
 from ..models.course import db, Course
+from ..models.roles import Group
 from . import course
 
 
@@ -25,11 +26,19 @@ def create_course():
                 setattr(course, key, value)
 
         db.session.add(course)
+
+        response_object = {
+            "message": f"Course {course.name} registered successfully."
+        }
+
+        if not Group().query.filter_by(name="Group 1").first():
+            group = Group(name="Group 1")
+            db.session.add(group)
+            response_object.update(group="new default Group `Group 1` created.")
+
         db.session.commit()
 
-        return jsonify({
-            "message": f"Course {course.name} registered successfully."
-        })
+        return jsonify(response_object)
 
     except Exception as e:
         db.session.rollback()

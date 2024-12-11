@@ -2,7 +2,7 @@ from flask import request, jsonify
 from flask_jwt_extended import create_access_token
 from ..models.user import db, User
 from ..models.course import Course
-from ..models.roles import Role
+from ..models.roles import Role, Group
 from ..views.user import generate_username
 from . import user
 
@@ -12,7 +12,7 @@ def register():
         data = request.get_json()
         if not data:
             return jsonify({"error": "Missing registration data"}), 400
-        
+
         user = User()
 
         # validate all require fields
@@ -33,9 +33,9 @@ def register():
                     data['username'] = username
                     break
         else:
-            userUsername = User.query.filter_by(username=username)
+            userUsername = User.query.filter_by(username=data['username']).first()
             if userUsername:
-                return jsonify({'error': f'Username {username} already exists'}), 401
+                return jsonify({'error': f'Username {userUsername} already exists'}), 401
 
         # make a user a `trainee` if a role isnt specified
         if 'role' not in data:
@@ -48,7 +48,8 @@ def register():
             data['role'] = default_role
 
 
-        for key, value in data.items():
+        ndata = data.copy()
+        for key, value in ndata.items():
             # must be a strong password before hashing and storing
             if key == 'password':
                 pass_err =  user.validate_password(value)
@@ -60,18 +61,32 @@ def register():
             elif key == 'course':
                 course = Course.query.filter_by(name=value).first()
                 if not course:
-                    return jsonify({'error': f'Course {value} does not exits - Report to an admin.'})
+                    return jsonify({'error': f'Course {value} does not exits - Report to an admin.'}), 404
                 value = course.id
             elif key == 'gender':
-                value = 'fe' not in value.lower()
+                key = 'isMaleGender'
+                value = data['gender'] = 'fe' not in value.lower()
             elif key == 'role':
-                role = Role.query.filter_by(name=value).first()
+                role = Role.query.filter_by(name=value.lower()).first()
                 if not role:
-                    return jsonify({'error': f'Role {value} does not exits - Report to an admin.'})
+                    return jsonify({'error': f'Role {value} does not exits - Report to an admin.'}), 404
                 value = role.id
+            elif key == 'startdate':
+                key = 'start_date'
+                value = data['start_date'] = data.get('startdate')
+                del data['startdate']
+            elif key == 'batch':
+                group = Group.query.filter_by(name=value.lower()).first()
+                if not group:
+                    return jsonify({'error': f'Group `{value}` does not exits - Report to an admin.'}), 404
+                key = 'group'
+                value = data['group'] = group.id
+                del data['batch']
+
 
             if hasattr(user, key):
                 setattr(user, key, value)
+        print(user.__dict__)
 
         db.session.add(user)
         db.session.commit()

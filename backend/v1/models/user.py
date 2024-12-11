@@ -13,6 +13,7 @@ class User(BaseModel):
     username = db.Column(db.String(50), unique=True, nullable=False)
     course = db.Column(db.Integer, db.ForeignKey('courses.id'))
     permission = db.Column(db.String(36))
+    isVerified = db.Column(db.Boolean, default=False)
 
     # not neccessary
     phone = db.Column(db.String(15))
@@ -28,6 +29,10 @@ class User(BaseModel):
         for field in required_fields:
             if field not in data:
                 return {"error": f"Missing required field: {field}"}
+            elif type(data[field]) is str:
+                if len(data[field]) < 1:
+                    return {"error": f"field `{field}` cannot be empty"}
+            
         return None
 
     def validate_password(self, pswd):
