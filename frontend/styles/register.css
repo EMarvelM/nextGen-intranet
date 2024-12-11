@@ -99,7 +99,29 @@
 .reg-btn:hover {
     background-color: rgba(128, 128, 128, .7);
 }
+.inner-reg-box a{
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+.inner-reg-box a:hover {
+    color: rgba(128, 128, 128, 0.7);
+}
+@media (max-width: 768px) {
+    .inner-reg-box a {
+        font-size: 0.9rem;
+    }
+}
 
+@media (max-width: 480px) {
+    .inner-reg-box a {
+        font-size: 0.85rem;
+        margin-top: 8px;
+    }
+}
 
 .full-width-input-box {
     display: flex;

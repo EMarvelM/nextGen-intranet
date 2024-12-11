@@ -56,6 +56,29 @@
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 5px;
 }
+.inner-login-box a {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+.inner-login-box a:hover {
+    color: rgba(128, 128, 128, 0.7);
+}
+@media (max-width: 768px) {
+    .inner-login-box a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .inner-login-box a {
+        font-size: 0.85rem;
+        margin-top: 8px;
+    }
+}
 
 .login-btn {
     background-color: gray;
