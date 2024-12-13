@@ -1,0 +1,25 @@
+
+#navbar ul{
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-left: -30px;
+    display: inline-flex;
+
+}
+
+
+
+#notify{
+   display: inline;
+   display: flex;
+   justify-content: right;
+   margin-top: -35px;
+   margin-bottom: 5px;
+   margin-right: 10px;
+}
+.foot{
+    left: 3%;
+    position:absolute;
+    bottom: 10%;
+}
